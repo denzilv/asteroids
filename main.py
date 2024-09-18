@@ -1,6 +1,7 @@
 # allows us to use code from the pygame library
 import pygame
 from constants import *
+from player import Player
 
 def main():
     # initialize pygame
@@ -12,6 +13,10 @@ def main():
     clock = pygame.time.Clock()
     dt = 0
 
+    x = SCREEN_WIDTH / 2
+    y = SCREEN_HEIGHT / 2
+    player = Player(x, y)
+
     # game loop
     while True:
         for event in pygame.event.get():
@@ -19,10 +24,12 @@ def main():
                 return
 
         screen.fill("black")
+        player.draw(screen)
         pygame.display.flip()
 
         # limit to 60 FPS framerate
         dt = clock.tick(60) / 1000
+
 
 # ensures main() is only called when this file is run directly
 # won't run as an imported module and is the pythonic way
