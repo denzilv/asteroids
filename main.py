@@ -3,23 +3,26 @@ import pygame
 from constants import *
 
 def main():
-    print("Starting asteroids!")
-    print("Screen width:", SCREEN_WIDTH)
-    print("Screen height:", SCREEN_HEIGHT)
-
     # initialize pygame
     pygame.init()
 
     # GUI window
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 
+    clock = pygame.time.Clock()
+    dt = 0
+
     # game loop
     while True:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 return
-            pygame.Surface.fill(screen, "black")
-            pygame.display.flip()
+
+        screen.fill("black")
+        pygame.display.flip()
+
+        # limit to 60 FPS framerate
+        dt = clock.tick(60) / 1000
 
 # ensures main() is only called when this file is run directly
 # won't run as an imported module and is the pythonic way
